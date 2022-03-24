@@ -1,0 +1,126 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"SearchDto": {
+				"properties": {
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"endDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"minCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"maxCount": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"startDate",
+					"endDate",
+					"minCount",
+					"maxCount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "getir",
+		"version": "1.0.0",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/records": {
+			"post": {
+				"operationId": "FindRecords",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"records": {
+											"items": {
+												"properties": {
+													"totalCount": {
+														"type": "number",
+														"format": "double"
+													},
+													"createdAt": {
+														"type": "string",
+														"format": "date-time"
+													},
+													"key": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"totalCount",
+													"createdAt",
+													"key"
+												],
+												"type": "object"
+											},
+											"type": "array"
+										},
+										"msg": {
+											"type": "string"
+										},
+										"code": {
+											"type": "number",
+											"format": "double"
+										}
+									},
+									"required": [
+										"records",
+										"msg",
+										"code"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SearchDto"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
